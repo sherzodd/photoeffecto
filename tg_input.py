@@ -5,7 +5,6 @@ import telebot
 import restore
 import queue
 import threading
-import black_white
 import concurrent.futures
 from telebot import types
 
