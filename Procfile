@@ -1,0 +1,1 @@
+web gunicorn tg_input:app
