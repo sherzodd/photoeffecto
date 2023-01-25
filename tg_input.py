@@ -64,11 +64,8 @@ def start(msg):
     else:
         start_msg = languages['english']["start"]
         
-    bot.send_message(msg.chat.id,
-    start_msg, parse_mode="HTML")
+    bot.send_photo(msg.chat.id, open('start.jpg', 'rb'), start_msg, parse_mode="HTML")
     
-
-
     
 @bot.message_handler(content_types=["text"])
 def handle_message(msg):
@@ -123,7 +120,7 @@ def handle_photo(msg):
     if msg.content_type == "document":
         file_id = msg.document.file_id
     else:
-        bot.send_message(chat_id, correct_type_msg)
+        bot.send_photo(chat_id, open("img2.jpg", "rb"), correct_type_msg)
         return
     file_url = 'https://api.telegram.org/file/bot5836636187:AAGADUyLUl7NxeSCImS3mpN6_I7dFm338V4/' + get_file_path(file_id)
     user_states[chat_id] = "queued"
