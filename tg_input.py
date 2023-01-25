@@ -7,20 +7,25 @@ import queue
 import threading
 import concurrent.futures
 from telebot import types
-import sqlite3
+import psycopg2
 
 
 
-# sqliteConnection = sqlite3.connect('SQLite_Python.db')
-# sqlite_create_table_query = '''CREATE TABLE TelegramBot (
-#                             user TEXT NOT NULL,
-#                             photos TEXT NOT NULL);'''
+hostname = 'ec2-3-223-213-207.compute-1.amazonaws.com'
+database = 'de5l64i5ulsp3s'
+username = 'yvhqqeeaplkzle'
+pwd = '9de44e696885fd4683dc33ef0b74bd556c9263f6a6738f70db39b5414cda2f4a'
+port_id = 5432
 
-# cursor = sqliteConnection.cursor()
-# print("Successfully Connected to SQLite")
-# cursor.execute(sqlite_create_table_query)
-# sqliteConnection.commit()
-# print("SQLite table created")
+conn = psycopg2.connect(
+            host = hostname,
+            dbname = database,
+            user = username,
+            password = pwd,
+            port = port_id
+)
+
+curr = conn.cursor()
 
 
 bot = telebot.TeleBot("5836636187:AAGADUyLUl7NxeSCImS3mpN6_I7dFm338V4")
@@ -74,11 +79,12 @@ languages = {
 def start(msg):
     start_msg = ''
     
-    # cursor.execute("SELECT user FROM TelgramBot")
-    # users = cursor.fetchall()
-    # if msg.from_user.id not in users:
-    #     cursor.execute("INSERT INTO TelegramBot VALUES (:user, :photos)", {'user': msg.from_user.id})
-    #     sqliteConnection.commit()
+    curr.execute("SELECT user FROM telegrambot")
+    users = curr.fetchall()
+    print(users)
+    if msg.from_user.id not in users:
+        curr.execute("INSERT INTO TelegramBot VALUES (:users, :photos)", {'user': msg.from_user.id})
+        conn.commit()
     
     if msg.from_user.language_code == "uz":
         start_msg = languages['uzbek']["start"]
@@ -124,11 +130,11 @@ def handle_photo(msg):
     correct_type_msg = ''
     running_process_msg = ''
     
-    # cursor.execute("SELECT photos FROM TelgramBot")
-    # photos = cursor.fetchall()
-    # if msg.chat.id not in photos:
-    #     cursor.execute("INSERT INTO TelegramBot VALUES (:user, :photos)", {'photos': msg.chat.id})
-    #     sqliteConnection.commit()
+    curr.execute("SELECT photos FROM TelgramBot")
+    photos = curr.fetchall()
+    if msg.chat.id not in photos:
+        curr.execute("INSERT INTO TelegramBot VALUES (:users, :photos)", {'photos': msg.chat.id})
+        conn.commit()
         
     
     if msg.from_user.language_code == "uz":
