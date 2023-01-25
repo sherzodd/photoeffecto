@@ -1,1 +1,1 @@
-web gunicorn tg_input:app --timeout 60
+web gunicorn tg_input:app --timeout 30
