@@ -11,13 +11,13 @@ import sqlite3
 
 
 
-sqliteConnection = sqlite3.connect('SQLite_Python.db')
-sqlite_create_table_query = '''CREATE TABLE TelegramBot (
-                            user TEXT NOT NULL,
-                            photos TEXT NOT NULL);'''
+# sqliteConnection = sqlite3.connect('SQLite_Python.db')
+# sqlite_create_table_query = '''CREATE TABLE TelegramBot (
+#                             user TEXT NOT NULL,
+#                             photos TEXT NOT NULL);'''
 
-cursor = sqliteConnection.cursor()
-print("Successfully Connected to SQLite")
+# cursor = sqliteConnection.cursor()
+# print("Successfully Connected to SQLite")
 # cursor.execute(sqlite_create_table_query)
 # sqliteConnection.commit()
 # print("SQLite table created")
@@ -74,11 +74,11 @@ languages = {
 def start(msg):
     start_msg = ''
     
-    cursor.execute("SELECT user FROM TelgramBot")
-    users = cursor.fetchall()
-    if msg.from_user.id not in users:
-        cursor.execute("INSERT INTO TelegramBot VALUES (:user, :photos)", {'user': msg.from_user.id})
-        sqliteConnection.commit()
+    # cursor.execute("SELECT user FROM TelgramBot")
+    # users = cursor.fetchall()
+    # if msg.from_user.id not in users:
+    #     cursor.execute("INSERT INTO TelegramBot VALUES (:user, :photos)", {'user': msg.from_user.id})
+    #     sqliteConnection.commit()
     
     if msg.from_user.language_code == "uz":
         start_msg = languages['uzbek']["start"]
@@ -124,11 +124,11 @@ def handle_photo(msg):
     correct_type_msg = ''
     running_process_msg = ''
     
-    cursor.execute("SELECT photos FROM TelgramBot")
-    photos = cursor.fetchall()
-    if msg.chat.id not in photos:
-        cursor.execute("INSERT INTO TelegramBot VALUES (:user, :photos)", {'photos': msg.chat.id})
-        sqliteConnection.commit()
+    # cursor.execute("SELECT photos FROM TelgramBot")
+    # photos = cursor.fetchall()
+    # if msg.chat.id not in photos:
+    #     cursor.execute("INSERT INTO TelegramBot VALUES (:user, :photos)", {'photos': msg.chat.id})
+    #     sqliteConnection.commit()
         
     
     if msg.from_user.language_code == "uz":
@@ -187,9 +187,9 @@ def get_file_path(file_id):
     return file_path
 
 
-if sqliteConnection:
-        sqliteConnection.close()
-        print("sqlite connection is closed")
+# if sqliteConnection:
+#         sqliteConnection.close()
+#         print("sqlite connection is closed")
         
 
 bot.infinity_polling()
