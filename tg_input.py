@@ -22,7 +22,8 @@ languages = {
 "\nBu bot orqali siz xira rasmlaringzini tiniqlashirishingiz mumkin."
 "\n"
 "\n"
-"\nRasimingizni file holatida yuboring",
+"\nRasimingizni file holatida yuboring"
+"\nBot haqida ma'lumot: t.me.photoeffectfasion",
         "running_process": "Rasim ishlov jarayonida.",
         "wait": "Jarayon ishga tushgan. Ilstimos kuting!",
         "error": "Rasimni tiklashda xatolik yuz berdi.",
@@ -34,7 +35,8 @@ languages = {
 "\nПользуйтесь на здоровье!"
 "\n"
 "\n"
-"\nОтправьте фотографий в формате файл без сжатия.",
+"\nОтправьте фотографий в формате файл без сжатия."
+"\nВся информация о боте: t.me.photoeffectfasion",
         "running_process": "изображение обрабатывается.",
         "wait": "Процесс запущен. Пожалуйста, подождите!",
         "error": "Ошибка во время обработки изображения.",
@@ -44,7 +46,8 @@ languages = {
         "start": "\n<b>Hello, this is FotoEffectBot.</b>"
 "\nThis bot allows you to restore your photos, and makes them better.""\n"
 "\n"
-"\nSend photos as files.",
+"\nSend photos as files."
+"\nAll information about the bot: t.me.photoeffectfasion",
         "running_process": "Image is being processed..",
         "wait": "Process is running. Please wait!",
         "error": "Error occurred while processing image.",
