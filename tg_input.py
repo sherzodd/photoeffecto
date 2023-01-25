@@ -23,7 +23,7 @@ languages = {
 "\n"
 "\n"
 "\nRasimingizni file holatida yuboring"
-"\nBot haqida ma'lumot: <a href='https://t.me.photoeffectfasion'>Foto Effect</a>",
+"\nBot haqida ma'lumot: <a href='https://t.me/photoeffectfasion'>Foto Effect</a>",
         "running_process": "Rasim ishlov jarayonida.",
         "wait": "Jarayon ishga tushgan. Ilstimos kuting!",
         "error": "Rasimni tiklashda xatolik yuz berdi.",
@@ -36,7 +36,7 @@ languages = {
 "\n"
 "\n"
 "\nОтправьте фотографий в формате файл без сжатия."
-"\nВся информация о боте: <a href='https://t.me.photoeffectfasion'>Foto Effect</a>",
+"\nВся информация о боте: <a href='https://t.me/photoeffectfasion'>Foto Effect</a>",
         "running_process": "изображение обрабатывается.",
         "wait": "Процесс запущен. Пожалуйста, подождите!",
         "error": "Ошибка во время обработки изображения.",
@@ -47,7 +47,7 @@ languages = {
 "\nThis bot allows you to restore your photos, and makes them better.""\n"
 "\n"
 "\nSend photos as files."
-"\nAll information about the bot: <a href='https://t.me.photoeffectfasion'>Foto Effect</a>",
+"\nAll information about the bot: <a href='https://t.me/photoeffectfasion'>Foto Effect</a>",
         "running_process": "Image is being processed..",
         "wait": "Process is running. Please wait!",
         "error": "Error occurred while processing image.",
