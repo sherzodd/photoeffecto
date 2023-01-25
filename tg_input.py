@@ -187,7 +187,6 @@ def get_file_path(file_id):
     return file_path
 
 
-cursor.close()
 if sqliteConnection:
         sqliteConnection.close()
         print("sqlite connection is closed")
