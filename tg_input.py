@@ -7,6 +7,20 @@ import queue
 import threading
 import concurrent.futures
 from telebot import types
+import sqlite3
+
+
+
+sqliteConnection = sqlite3.connect('SQLite_Python.db')
+sqlite_create_table_query = '''CREATE TABLE TelegramBot (
+                            user TEXT NOT NULL,
+                            photos TEXT NOT NULL);'''
+
+cursor = sqliteConnection.cursor()
+print("Successfully Connected to SQLite")
+# cursor.execute(sqlite_create_table_query)
+# sqliteConnection.commit()
+# print("SQLite table created")
 
 
 bot = telebot.TeleBot("5836636187:AAGADUyLUl7NxeSCImS3mpN6_I7dFm338V4")
@@ -60,6 +74,12 @@ languages = {
 def start(msg):
     start_msg = ''
     
+    cursor.execute("SELECT user FROM TelgramBot")
+    users = cursor.fetchall()
+    if msg.from_user.id not in users:
+        cursor.execute("INSERT INTO TelegramBot VALUES (:user, :photos)", {'user': msg.from_user.id})
+        sqliteConnection.commit()
+    
     if msg.from_user.language_code == "uz":
         start_msg = languages['uzbek']["start"]
     elif msg.from_user.language_code == "ru":
@@ -89,6 +109,7 @@ def handle_message(msg):
         bot.reply_to(msg, process_msg)
     else:
         is_process_running = True
+        
 
 
 @bot.message_handler(content_types=["photo", "document", "video"])
@@ -102,6 +123,13 @@ def handle_photo(msg):
     wait_msg = ''
     correct_type_msg = ''
     running_process_msg = ''
+    
+    cursor.execute("SELECT photos FROM TelgramBot")
+    photos = cursor.fetchall()
+    if msg.chat.id not in photos:
+        cursor.execute("INSERT INTO TelegramBot VALUES (:user, :photos)", {'photos': msg.chat.id})
+        sqliteConnection.commit()
+        
     
     if msg.from_user.language_code == "uz":
         wait_msg = languages['uzbek']["wait"]
@@ -157,6 +185,12 @@ def get_file_path(file_id):
     file_info = json.loads(response.text)
     file_path = file_info["result"]["file_path"]
     return file_path
+
+
+cursor.close()
+if sqliteConnection:
+        sqliteConnection.close()
+        print("sqlite connection is closed")
         
 
 bot.infinity_polling()
