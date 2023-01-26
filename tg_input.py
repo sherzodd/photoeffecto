@@ -83,9 +83,9 @@ def start(msg):
     users = curr.fetchall()
     print(users)
     print(msg.from_user.id)
-    if str(msg.from_user.id) not in users:
-        sql = "INSERT INTO telegrambot (users) VALUES (%s)"
-        curr.execute(sql, (msg.from_user.id))
+    if str(msg.from_user.id) not in users[:]:
+        sql = "INSERT INTO telegrambot (users, photos) VALUES (%s, %s)"
+        curr.execute(sql, (msg.from_user.id, ''))
         conn.commit()
     
     if msg.from_user.language_code == "uz":
