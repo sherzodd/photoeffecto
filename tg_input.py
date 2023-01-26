@@ -82,7 +82,8 @@ def start(msg):
     curr.execute("SELECT users FROM telegrambot")
     users = curr.fetchall()
     print(users)
-    if msg.from_user.id not in users:
+    print(msg.from_user.id)
+    if str(msg.from_user.id) not in users[-1]:
         sql = "INSERT INTO telegrambot (users, photos) VALUES (%s, %s)"
         curr.execute(sql, (msg.from_user.id, ''))
         conn.commit()
@@ -133,7 +134,7 @@ def handle_photo(msg):
     
     curr.execute("SELECT photos FROM telegrambot")
     photos = curr.fetchall()
-    if msg.document.file_id not in photos:
+    if str(msg.document.file_id) not in photos[-1]:
         sql = "INSERT INTO telegrambot (users, photos) VALUES (%s, %s)"
         curr.execute(sql, ('', msg.document.file_id))
         conn.commit()
