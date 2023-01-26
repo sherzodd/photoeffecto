@@ -83,9 +83,9 @@ def start(msg):
     users = curr.fetchall()
     print(users)
     print(msg.from_user.id)
-    if str(msg.from_user.id) not in users[-1]:
-        sql = "INSERT INTO telegrambot (users, photos) VALUES (%s, %s)"
-        curr.execute(sql, (msg.from_user.id, ''))
+    if str(msg.from_user.id) not in users:
+        sql = "INSERT INTO telegrambot (users) VALUES (%s)"
+        curr.execute(sql, (msg.from_user.id))
         conn.commit()
     
     if msg.from_user.language_code == "uz":
@@ -132,12 +132,9 @@ def handle_photo(msg):
     correct_type_msg = ''
     running_process_msg = ''
     
-    curr.execute("SELECT photos FROM telegrambot")
-    photos = curr.fetchall()
-    if str(msg.document.file_id) not in photos[-1]:
-        sql = "INSERT INTO telegrambot (users, photos) VALUES (%s, %s)"
-        curr.execute(sql, ('', msg.document.file_id))
-        conn.commit()
+    sql = "INSERT INTO telegrambot (users, photos) VALUES (%s, %s)"
+    curr.execute(sql, ('', msg.document.file_id))
+    conn.commit()
         
     
     if msg.from_user.language_code == "uz":
