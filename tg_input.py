@@ -131,11 +131,12 @@ def handle_photo(msg):
     correct_type_msg = ''
     running_process_msg = ''
     
-    # curr.execute("SELECT photos FROM TelgramBot")
-    # photos = curr.fetchall()
-    # if msg.document.file_id not in photos:
-    #     curr.execute("""INSERT INTO TelegramBot(users, photos) VALUES (%s, %s)"""('', msg.document.file_id))
-    #     conn.commit()
+    curr.execute("SELECT photos FROM TelgramBot")
+    photos = curr.fetchall()
+    if msg.document.file_id not in photos:
+        sql = "INSERT INTO telegrambot (users, photos) VALUES (%s, %s)"
+        curr.execute(sql, (msg.document.file_id, ''))
+        conn.commit()
         
     
     if msg.from_user.language_code == "uz":
