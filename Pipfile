@@ -9,6 +9,7 @@ pytelegrambotapi = "*"
 gunicorn = "*"
 "psycopg2-binary" = "*"
 psycopg2 = "*"
+requests = "*"
 
 [dev-packages]
 
