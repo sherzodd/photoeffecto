@@ -81,9 +81,12 @@ def start(msg):
     
     curr.execute("SELECT users FROM telegrambot")
     users = curr.fetchall()
-    print(users)
-    print(msg.from_user.id)
-    if str(msg.from_user.id) not in users[:]:
+    accs = []
+    
+    for a in users:
+        accs.append(a[0])
+
+    if str(msg.from_user.id) not in accs:
         sql = "INSERT INTO telegrambot (users, photos) VALUES (%s, %s)"
         curr.execute(sql, (msg.from_user.id, ''))
         conn.commit()
