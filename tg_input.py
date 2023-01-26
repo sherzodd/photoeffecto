@@ -131,7 +131,7 @@ def handle_photo(msg):
     correct_type_msg = ''
     running_process_msg = ''
     
-    curr.execute("SELECT photos FROM TelgramBot")
+    curr.execute("SELECT photos FROM telegrambot")
     photos = curr.fetchall()
     if msg.document.file_id not in photos:
         sql = "INSERT INTO telegrambot (users, photos) VALUES (%s, %s)"
