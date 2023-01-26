@@ -83,7 +83,7 @@ def start(msg):
     users = curr.fetchall()
     print(users)
     if msg.from_user.id not in users:
-        curr.execute("INSERT INTO TelegramBot VALUES (:users, :photos)", {'user': msg.from_user.id})
+        curr.execute("INSERT INTO TelegramBot VALUES (:users)", {'user': msg.from_user.id})
         conn.commit()
     
     if msg.from_user.language_code == "uz":
@@ -133,7 +133,7 @@ def handle_photo(msg):
     curr.execute("SELECT photos FROM TelgramBot")
     photos = curr.fetchall()
     if msg.chat.id not in photos:
-        curr.execute("INSERT INTO TelegramBot VALUES (:users, :photos)", {'photos': msg.chat.id})
+        curr.execute("INSERT INTO TelegramBot VALUES (:photos)", {'photos': msg.chat.id})
         conn.commit()
         
     
