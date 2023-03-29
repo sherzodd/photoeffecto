@@ -28,7 +28,7 @@ conn = psycopg2.connect(
 curr = conn.cursor()
 
 
-bot = telebot.TeleBot("5836636187:AAGADUyLUl7NxeSCImS3mpN6_I7dFm338V4")
+bot = telebot.TeleBot("BOT TOKEN")
 
 is_process_running = False
 file_id = ''
