@@ -11,10 +11,10 @@ import psycopg2
 
 
 
-hostname = 'ec2-3-223-213-207.compute-1.amazonaws.com'
-database = 'de5l64i5ulsp3s'
-username = 'yvhqqeeaplkzle'
-pwd = '9de44e696885fd4683dc33ef0b74bd556c9263f6a6738f70db39b5414cda2f4a'
+hostname = 'HOSTNAME'
+database = 'DB'
+username = 'USERNAME'
+pwd = 'YOUR PSWRD'
 port_id = 5432
 
 conn = psycopg2.connect(
